@@ -33,15 +33,6 @@ public class HexagonRenderer : MonoBehaviour
         vertices[4] = new Vector3(-_width / 2, -Mathf.Sqrt(_width * 1.5f) );
         vertices[5] = new Vector3(-_width, 0);
 
-        /**
-        vertices[0] = new Vector3(-_width / 2, _height);
-        vertices[1] = new Vector3(_width / 2, _height);
-        vertices[2] = new Vector3(_width, 0);
-        vertices[3] = new Vector3(_width / 2, -_height);
-        vertices[4] = new Vector3(-_width / 2, -_height);
-        vertices[5] = new Vector3(-_width, 0);
-        */
-
         mesh.vertices = vertices;
 
         mesh.triangles = new int[] { 0, 4, 5, 0, 3, 4, 0, 1, 3, 1, 2, 3 };
