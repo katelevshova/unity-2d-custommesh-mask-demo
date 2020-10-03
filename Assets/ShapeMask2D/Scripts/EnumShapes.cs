@@ -5,6 +5,8 @@ using UnityEngine;
 public enum EnumShapes
 {
     Hexagon,
-    Circle,
-    Heart
+    Letter_I,
+    Heart,
+    UnityLogo,
+    Circle   
 }
