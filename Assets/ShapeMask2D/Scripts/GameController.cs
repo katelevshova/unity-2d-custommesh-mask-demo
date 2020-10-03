@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
+using Toggle = UnityEngine.UI.Toggle;
+
 
 public class GameController : MonoBehaviour
 {
@@ -12,6 +16,8 @@ public class GameController : MonoBehaviour
     public Button btnDrawHexagonMesh;
     public ShapeSpriteMask shapeSpriteMask;
     public HexagonRenderer hexagonRenderer;
+    public Toggle btnToggleSound;
+    public SoundManager soundManager;
 
     public void Awake()
     {
@@ -24,10 +30,18 @@ public class GameController : MonoBehaviour
             Destroy(this);
         }
 
-        if (btnChangeSpriteMask == null || btnDrawHexagonMesh == null || shapeSpriteMask == null)
+        if (btnToggleSound == null || btnChangeSpriteMask == null || soundManager == null
+            || btnDrawHexagonMesh == null || shapeSpriteMask == null)
         {
             throw new Exception("Initialize GameController properties in the Editor, drag from Hierarchy window");
         }
+        
+        Init();
+    }
+
+    private void Init()
+    {
+        btnToggleSound.GetComponentInChildren<Text>().text = "Sound is ON"; 
     }
 
     void Start()
@@ -37,13 +51,28 @@ public class GameController : MonoBehaviour
 
     public void OnBtnChangeSpriteMaskClickHandler()
     {
-        //Debug.Log("->OnBtnChangeSpriteMaskClickHandler");
         shapeSpriteMask.UpdateShapeToNext();
     }
 
     public void OnBtnDrawHexagonMeshClickHandler()
     {
-        Debug.Log("->OnBtnDrawHexagonMeshClickHandler");
         hexagonRenderer.DrawHexagon();
+    }
+
+    public void OnBtnToggleSoundClickHandler()
+    {
+        string sound_status = "Sound is ";
+        if (btnToggleSound.isOn)
+        {
+            soundManager.TransitionToSnapshot(SoundManager.UN_MUTE);
+            sound_status += "ON";
+        }
+        else
+        {
+            soundManager.TransitionToSnapshot(SoundManager.MUTE);
+            sound_status += "OFF";
+        }
+
+        btnToggleSound.GetComponentInChildren<Text>().text = sound_status;
     }
 }
