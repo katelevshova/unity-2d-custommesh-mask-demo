@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -41,7 +42,7 @@ public class GameController : MonoBehaviour
 
     private void Init()
     {
-        btnToggleSound.GetComponentInChildren<Text>().text = "Sound is ON"; 
+        btnToggleSound.GetComponentInChildren<TextMeshProUGUI>().text = "Sound is ON"; 
     }
 
     void Start()
@@ -73,6 +74,6 @@ public class GameController : MonoBehaviour
             sound_status += "OFF";
         }
 
-        btnToggleSound.GetComponentInChildren<Text>().text = sound_status;
+        btnToggleSound.GetComponentInChildren<TextMeshProUGUI>().text = sound_status;
     }
 }
