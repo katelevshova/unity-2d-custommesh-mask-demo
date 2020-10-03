@@ -26,55 +26,18 @@ public class HexagonRenderer : MonoBehaviour
     {
         _meshCollider = GetComponent<MeshCollider>();
         InputManager.OnDoubleClickHandler += OnDoubleClickHandler;
-        //DrawHexagon();
-    }
-
-    void Update()
-    {
-        /*if (InputManager.Instance == null || !InputManager.Instance.isValid)
-            return;
-
-        Vector3 distance = _offset.normalized;
-        float dotProd = Vector3.Dot(transform.right, distance);
-
-        if (Mathf.Abs(1 - dotProd) < 1f)
-        {
-            Debug.Log("[HexagonRenderer]-> YAHOOOO!");
-        }*/
-
-        if (_meshCollider.bounds.Contains(Input.mousePosition))
-        {
-            Debug.Log("Inside");
-        }
-
-
-     
-            
-
     }
 
     private void OnDoubleClickHandler()
     {
-        Debug.Log("[HexagonRenderer]->OnDoubleClickHandler");
-         /*_screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-
-         Vector2 distance = (InputManager.Instance.mousePosition3D - _screenPoint).normalized;
-         Debug.Log("distance=" + distance);
-
-         float dotProd = Vector3.Dot(transform.right, distance);
-         Debug.Log("dotProd=" + dotProd);
-         float dotProdModulo = Mathf.Abs(dotProd);
-         Debug.Log("dotProdModulo=" + dotProdModulo);*/
-
-         Boolean isInside = ContainsPoint(vertices, InputManager.Instance.mouseScreenPosition);
-         Debug.Log("1 isInside=" + isInside);
-
-        if (_meshCollider.bounds.Contains(InputManager.Instance.mousePosition3D))
+        Vector3 relativePoint = transform.InverseTransformPoint(InputManager.Instance.mousePosition3D);
+        
+        Boolean isInside = ContainsPoint(vertices, relativePoint);
+        
+        if (isInside)
         {
-            Debug.Log("Inside 2");
+            ChangeColor();
         }
-
-        ChangeColor();
     }
 
     private void ChangeColor()
@@ -83,16 +46,29 @@ public class HexagonRenderer : MonoBehaviour
     }
 
     public Boolean ContainsPoint(Vector3[] polyPoints, Vector3 p ) 
-    { 
+    {
         var j = polyPoints.Length - 1;
-        var inside = false; 
-        for (int i = 0; i < polyPoints.Length; j = i++) 
-        { 
-            if (((polyPoints[i].y <= p.y && p.y<polyPoints[j].y) || (polyPoints[j].y <= p.y && p.y<polyPoints[i].y)) && 
-                (p.x<(polyPoints[j].x - polyPoints[i].x) * (p.y - polyPoints[i].y) / (polyPoints[j].y - polyPoints[i].y) + polyPoints[i].x)) 
-                inside = !inside; 
+        var inside = false;
+        for (int i = 0; i < polyPoints.Length; j = i++)
+        {
+            var pi = polyPoints[i];
+            var pj = polyPoints[j];
+            if (((pi.y <= p.y && p.y < pj.y) || (pj.y <= p.y && p.y < pi.y)) &&
+                (p.x < (pj.x - pi.x) * (p.y - pi.y) / (pj.y - pi.y) + pi.x))
+                inside = !inside;
         }
-        return inside; 
+        return inside;
+    }
+
+    bool IsInCollider(Collider other, Vector3 point)
+    {
+
+        if (other.ClosestPoint(point) == point)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public void DrawHexagon()
@@ -118,11 +94,8 @@ public class HexagonRenderer : MonoBehaviour
         }
         mesh.uv = uvs;
 
-
         mesh.triangles = new int[] { 0, 4, 5, 0, 3, 4, 0, 1, 3, 1, 2, 3 };
         GetComponent<MeshRenderer>().material = _material;
-
-       
 
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
@@ -131,20 +104,10 @@ public class HexagonRenderer : MonoBehaviour
         GetComponent<MeshFilter>().mesh = mesh;
         _meshCollider.sharedMesh = null;
         _meshCollider.sharedMesh = mesh;
-
-        
     }
 
     private void OnDisable()
     {
         InputManager.OnDoubleClickHandler -= OnDoubleClickHandler;
-    }
-
-    public void OnMouseDown()
-    {
-        if (_meshCollider.sharedMesh.bounds.Contains(InputManager.Instance.mousePosition3D))
-        {
-            Debug.Log("Inside 3");
-        }
     }
 }
