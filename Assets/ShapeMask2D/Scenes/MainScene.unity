@@ -1480,7 +1480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5019593357964948b6de2dd94921ef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeClickDelay: 1
+  timeClickDelay: 0.5
   whatIsClickable:
     serializedVersion: 2
     m_Bits: 256

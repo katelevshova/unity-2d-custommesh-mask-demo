@@ -73,6 +73,13 @@ public class HexagonRenderer : MonoBehaviour
         {
             Debug.Log("Inside 2");
         }
+
+        ChangeColor();
+    }
+
+    private void ChangeColor()
+    {
+        _material.color = UnityEngine.Random.ColorHSV();
     }
 
     public Boolean ContainsPoint(Vector3[] polyPoints, Vector3 p ) 
