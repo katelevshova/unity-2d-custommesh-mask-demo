@@ -15,12 +15,6 @@ public class ShapeSpriteMask : MonoBehaviour
         _spriteMask = GetComponentInChildren<SpriteMask>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void UpdateShapeToNext()
     {
         _currentId++;
