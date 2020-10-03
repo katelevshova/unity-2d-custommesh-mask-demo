@@ -757,13 +757,8 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890756620}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3a2f7ab52dfb4b49be418a5b608953c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4443c0905d7e77b4db45b9eff9ca5292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MousePosition: {x: 0, y: 0, z: 0}
-  IsValid: 0
-  whatIsClickableTarget:
-    serializedVersion: 2
-    m_Bits: 256
