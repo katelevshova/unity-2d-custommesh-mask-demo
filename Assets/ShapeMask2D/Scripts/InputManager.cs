@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private float timeClickDelay = 1f;
     private float _lastTimeClick;
+    public LayerMask whatIsClickable;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -41,7 +42,7 @@ public class InputManager : MonoBehaviour, IPointerClickHandler
         
         Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if (Physics.Raycast(rayOrigin, out hitInfo))
+        if (Physics.Raycast(rayOrigin, out hitInfo, 100, whatIsClickable))
         {
             //TODO: here we can use Interface if we will have lots of different shapes in future
             HexagonRenderer hexagon = hitInfo.collider.GetComponent<HexagonRenderer>();

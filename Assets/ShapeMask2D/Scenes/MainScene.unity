@@ -691,6 +691,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeClickDelay: 1
+  whatIsClickable:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!222 &1746549061
 CanvasRenderer:
   m_ObjectHideFlags: 0
