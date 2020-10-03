@@ -19,7 +19,7 @@ public class MouseLocator : MonoBehaviour
 
 	void Awake()
 	{
-		Debug.Log("MouseLocation");
+		Debug.Log("MouseLocator");
 		//This is a common approach to handling a class with a reference to itself.
 		//If instance variable doesn't exist, assign this object to it
 		if (Instance == null)
@@ -59,7 +59,7 @@ public class MouseLocator : MonoBehaviour
 			IsValid = true;
 			//...and record the point in 3D space that the ray hit the ground
 			MousePosition = hit.point;
-			Debug.Log("MouseLocation");
+			Debug.Log("MouseLocator"+ whatIsClickableTarget);
 		}
 	}
 

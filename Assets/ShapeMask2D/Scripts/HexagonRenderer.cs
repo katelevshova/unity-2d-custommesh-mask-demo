@@ -8,19 +8,17 @@ public class HexagonRenderer : MonoBehaviour
     private float _width = 2; // width of the square in which we draw the hexagon
     [SerializeField]
     private Material _material;
+    private MeshCollider _meshCollider;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        _meshCollider = GetComponent<MeshCollider>();
         DrawHexagon();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
     public void DrawHexagon()
     {
         Mesh mesh = new Mesh();
@@ -39,5 +37,6 @@ public class HexagonRenderer : MonoBehaviour
         GetComponent<MeshRenderer>().material = _material;
 
         GetComponent<MeshFilter>().mesh = mesh;
+        _meshCollider.sharedMesh = mesh;
     }
 }

@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class GameController : MonoBehaviour, IPointerDownHandler//, IDragHandler, IEndDragHandler
+public class GameController : MonoBehaviour
 {
-
-
     public static GameController Instance;
-
 
     public void Awake()
     {
@@ -25,11 +22,5 @@ public class GameController : MonoBehaviour, IPointerDownHandler//, IDragHandler
     void Start()
     {
         Debug.Log("[GameController] start");
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        //throw new System.NotImplementedException();
-        Debug.Log("OnPointerDown");
     }
 }
