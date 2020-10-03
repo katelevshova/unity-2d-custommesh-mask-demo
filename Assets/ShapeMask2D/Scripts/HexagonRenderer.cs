@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(MeshCollider))]   // for working  OnPointerClick
+[RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(MeshRenderer))]
 public class HexagonRenderer : MonoBehaviour
 {
     [SerializeField]

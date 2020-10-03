@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]   // for working  OnPointerClick
+//[RequireComponent(typeof(Button))]   // for working  OnPointerClick
 public class InputManager : MonoBehaviour, IPointerClickHandler
 {
     public static InputManager Instance;
