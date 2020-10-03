@@ -9,7 +9,9 @@ public class GameController : MonoBehaviour
 {
     public static GameController Instance;
     public Button btnChangeSpriteMask;
+    public Button btnDrawHexagonMesh;
     public ShapeSpriteMask shapeSpriteMask;
+    public HexagonRenderer hexagonRenderer;
 
     public void Awake()
     {
@@ -22,7 +24,7 @@ public class GameController : MonoBehaviour
             Destroy(this);
         }
 
-        if (btnChangeSpriteMask == null || shapeSpriteMask == null)
+        if (btnChangeSpriteMask == null || btnDrawHexagonMesh == null || shapeSpriteMask == null)
         {
             throw new Exception("Initialize GameController properties in the Editor, drag from Hierarchy window");
         }
@@ -35,7 +37,13 @@ public class GameController : MonoBehaviour
 
     public void OnBtnChangeSpriteMaskClickHandler()
     {
-        Debug.Log("->OnBtnChangeSpriteMaskClickHandler");
+        //Debug.Log("->OnBtnChangeSpriteMaskClickHandler");
         shapeSpriteMask.UpdateShapeToNext();
+    }
+
+    public void OnBtnDrawHexagonMeshClickHandler()
+    {
+        Debug.Log("->OnBtnDrawHexagonMeshClickHandler");
+        hexagonRenderer.DrawHexagon();
     }
 }

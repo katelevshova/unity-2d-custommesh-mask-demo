@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ShapeSpriteMask : MonoBehaviour
 {
-    private SpriteMask _spriteMask; 
+    private SpriteMask _spriteMask;
+    private int _currentId = 0;
 
 
     // Start is called before the first frame update
@@ -21,7 +23,15 @@ public class ShapeSpriteMask : MonoBehaviour
 
     public void UpdateShapeToNext()
     {
-        string shape_sprite_path = "Sprites/" + "Heart";
+        _currentId++;
+        var total = Enum.GetNames(typeof(EnumShapes)).Length;
+
+        if (_currentId == total)
+        {
+            _currentId = 0;
+        }
+
+        string shape_sprite_path = "Sprites/" + (EnumShapes)_currentId;
         _spriteMask.sprite = Resources.Load<Sprite>(shape_sprite_path);
     }
 }

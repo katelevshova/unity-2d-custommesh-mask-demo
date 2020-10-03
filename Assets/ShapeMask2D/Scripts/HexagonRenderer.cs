@@ -26,7 +26,7 @@ public class HexagonRenderer : MonoBehaviour
     {
         _meshCollider = GetComponent<MeshCollider>();
         InputManager.OnDoubleClickHandler += OnDoubleClickHandler;
-        DrawHexagon();
+        //DrawHexagon();
     }
 
     void Update()
