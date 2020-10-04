@@ -20,7 +20,6 @@ public class NarratorSound : MonoBehaviour
     public void PlayNextSound()
     {
         audioSource.clip = GetNextAudioClip();
-        Debug.Log("audioClipName="+audioSource.clip.name);
         audioSource.Play();
     }
     

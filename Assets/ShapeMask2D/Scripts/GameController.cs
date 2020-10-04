@@ -91,7 +91,6 @@ public class GameController : MonoBehaviour
     
     public void OnBtnPlayNarratorSoundClickHandler()
     {
-        Debug.Log("OnBtnPlayNarratorSoundClickHandler");
         soundManager.narratorSound.PlayNextSound();
     }
 }

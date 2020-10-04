@@ -90,7 +90,7 @@ public class InputManager : MonoBehaviour, IPointerClickHandler
             
             if (hexagon != null)
             {
-                Debug.Log("[InputManager]->DoubleClickHandler: Hexagon!");
+                //Debug.Log("[InputManager]->DoubleClickHandler: Hexagon!");
                 //...the mouse position is valid...
                 isValid = true;
                 //...and record the point in 3D space that the ray hit the whatIsClickable
