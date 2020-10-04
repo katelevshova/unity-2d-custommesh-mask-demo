@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -15,8 +16,18 @@ public class SoundManager : MonoBehaviour
     public AudioMixer masterMixer;
     public AudioMixer soundEffects;
 
+    public NarratorSound narratorSound;
+
     public const string EXPOSED_PARAM_BG_MUSIC = "sliderBgMusic";
-    
+
+    public void Awake()
+    {
+        if (narratorSound == null)
+        {
+            throw new Exception("Initialize SoundManager properties in the Editor, " +
+                                "drag from Hierarchy window");
+        }
+    }
 
     public void TransitionToSnapshot(int triggerNumber)
     {

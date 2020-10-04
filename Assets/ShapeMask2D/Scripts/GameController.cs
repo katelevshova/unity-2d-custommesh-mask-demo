@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     public Toggle btnToggleSound;
     public SoundManager soundManager;
     public Slider sliderBgMusic;
+    public Button btnPlayNarratorSound;
 
     public void Awake()
     {
@@ -33,7 +34,8 @@ public class GameController : MonoBehaviour
             Destroy(this);
         }
 
-        if (btnToggleSound == null || btnChangeSpriteMask == null || soundManager == null
+        if (btnToggleSound == null || btnChangeSpriteMask == null || soundManager == null 
+            || btnPlayNarratorSound == null
             || btnDrawHexagonMesh == null || shapeSpriteMask == null || sliderBgMusic == null)
         {
             throw new Exception("Initialize GameController properties in the Editor, " +
@@ -85,5 +87,11 @@ public class GameController : MonoBehaviour
     {
         soundManager.SetVolumeLevel(SoundManager.EXPOSED_PARAM_BG_MUSIC, sliderBgMusic.value);
         PlayerPrefs.SetFloat(PlayerPrefsConstants.PLAYER_PREFS_BG_MUSIC, sliderBgMusic.value);
+    }
+    
+    public void OnBtnPlayNarratorSoundClickHandler()
+    {
+        Debug.Log("OnBtnPlayNarratorSoundClickHandler");
+        soundManager.narratorSound.PlayNextSound();
     }
 }
