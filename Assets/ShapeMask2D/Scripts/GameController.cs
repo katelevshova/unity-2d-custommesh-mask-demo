@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
+using Slider = UnityEngine.UI.Slider;
 using Toggle = UnityEngine.UI.Toggle;
 
 
@@ -19,6 +20,7 @@ public class GameController : MonoBehaviour
     public HexagonRenderer hexagonRenderer;
     public Toggle btnToggleSound;
     public SoundManager soundManager;
+    public Slider sliderBgMusic;
 
     public void Awake()
     {
@@ -32,9 +34,10 @@ public class GameController : MonoBehaviour
         }
 
         if (btnToggleSound == null || btnChangeSpriteMask == null || soundManager == null
-            || btnDrawHexagonMesh == null || shapeSpriteMask == null)
+            || btnDrawHexagonMesh == null || shapeSpriteMask == null || sliderBgMusic == null)
         {
-            throw new Exception("Initialize GameController properties in the Editor, drag from Hierarchy window");
+            throw new Exception("Initialize GameController properties in the Editor, " +
+                                "drag from Hierarchy window");
         }
         
         Init();
@@ -43,6 +46,7 @@ public class GameController : MonoBehaviour
     private void Init()
     {
         btnToggleSound.GetComponentInChildren<TextMeshProUGUI>().text = "Sound is ON"; 
+        sliderBgMusic.value = PlayerPrefs.GetFloat(PlayerPrefsConstants.PLAYER_PREFS_BG_MUSIC, 100f);
     }
 
     void Start()
@@ -75,5 +79,11 @@ public class GameController : MonoBehaviour
         }
 
         btnToggleSound.GetComponentInChildren<TextMeshProUGUI>().text = sound_status;
+    }
+    
+    public void SliderBgMusic_ValueChangeCheck()
+    {
+        soundManager.SetVolumeLevel(SoundManager.EXPOSED_PARAM_BG_MUSIC, sliderBgMusic.value);
+        PlayerPrefs.SetFloat(PlayerPrefsConstants.PLAYER_PREFS_BG_MUSIC, sliderBgMusic.value);
     }
 }

@@ -48,5 +48,6 @@ public class SoundManager : MonoBehaviour
                 masterMixer.SetFloat(exposedParamName, convertedVolume);
                 break;
         }
+        //NOTE: here you can add more sliders 
     }
 }
