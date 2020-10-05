@@ -22,4 +22,11 @@
 
 **2. Mask**
 
-1. Click button "Change Sprite Mask" to switch btween different shapes.
+1. Click button "Change Sprite Mask" to switch btween different shapes - hexagon, I, 💜, Unity, circle.
+
+**3. Sound**
+
+1. Use Checkbox to **Mute** or **UnMute** the sound.
+2. Use Slider to gradually decrease/increase the volume level of the sound. **Notice that it doesn't drop but is transitioning smoothly.**
+3. The volume level is saved to the **PlayerPrefs** so it would be restored after application restart.
+4. Click button "Play Narrator Sound" to play 2 short sounds with **"Duck Volume" effect** - the level of the background music decreases while playing the narrator sound.
