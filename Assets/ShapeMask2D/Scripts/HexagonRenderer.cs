@@ -74,7 +74,7 @@ public class HexagonRenderer : MonoBehaviour
     public void DrawHexagon()
     {
         Mesh mesh = new Mesh();
-
+        // meshes are consists of vertices - several points.
        
         vertices[0] = new Vector3(-_width / 2, Mathf.Sqrt(_width * 1.5f));
         vertices[1] = new Vector3(_width / 2, Mathf.Sqrt(_width * 1.5f));
@@ -90,15 +90,17 @@ public class HexagonRenderer : MonoBehaviour
 
         for (int i = 0; i < uvs.Length; i++)
         {
-            uvs[i] = new Vector2(vertices[i].x, vertices[i].z);
+            uvs[i] = new Vector2(vertices[i].x, vertices[i].z); // UV = XY and are normilized (0 to 1) 2D coordinate system
         }
         mesh.uv = uvs;
-
-        mesh.triangles = new int[] { 0, 4, 5, 0, 3, 4, 0, 1, 3, 1, 2, 3 };
+        //to fill the mesh vertices we need triangles
+        //eliminate backface culling for performance reasons. 
+        //Directions are calculated based on the order of vertices in triangles
+        mesh.triangles = new int[] { 0, 4, 5, 0, 3, 4, 0, 1, 3, 1, 2, 3 }; // order must be clockwise
         GetComponent<MeshRenderer>().material = _material;
 
-        mesh.RecalculateNormals();
-        mesh.RecalculateBounds();
+        mesh.RecalculateNormals(); // to calculate how lightning should look
+        mesh.RecalculateBounds();  //to ensure the bounding volume is correct
         mesh.Optimize();
 
         GetComponent<MeshFilter>().mesh = mesh;
